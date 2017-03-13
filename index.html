@@ -17,97 +17,95 @@
     <!-- endinject -->
 </head>
 
-<body ng-controller="BudgetTrackerCtrl as btCtrl">
+<body ng-controller="WeatherApp as weatherCtrl">
     <!-- bower:js -->
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <!-- endbower -->
+    <div class="jumbotron" style="text-align: center;">
+        <h1>Origin Weather Application</h1>
+        <h3 style="font-style: italic">Always know if you need an unbrella!</h3>
+    </div>
     <div class="container-fluid">
-        <div class="col-md-3 top-buffer">
-            <div class="panel panel-success top-buffer">
-                <div class="panel-heading">Income Entries</div>
+        <div class="btn-group" data-toggle="buttons">
+            <label class="btn btn-primary active">
+              <input type="radio" name="options" id="option1" autocomplete="off" checked>San Diego
+            </label>
+            <label class="btn btn-primary">
+              <input type="radio" name="options" id="option2" autocomplete="off">New York
+            </label>
+            <label class="btn btn-primary">
+              <input type="radio" name="options" id="option3" autocomplete="off">Washington D.C.
+            </label>
+            <label class="btn btn-primary">
+              <input type="radio" name="options" id="option3" autocomplete="off">London
+            </label>
+            <label class="btn btn-primary">
+              <input type="radio" name="options" id="option3" autocomplete="off">Tokyo
+            </label>
+        </div>
+        <div class="input-group top-buffer">
+            <input type="text" class="form-control" placeholder="Recipient's username" aria-describedby="basic-addon2">
+            <span class="input-group-addon" id="basic-addon2">Go!</span>
+        </div>
+        <div class="col-md-5 top-buffer margin: auto">
+            <div class="panel panel-info">
+                <div class="panel-heading">City Information</div>
                 <div class="panel-body">
-                    <div class="form-group">
-                        <label>Description:</label>
-                        <input ng-model="btCtrl.incomeInput.name" type="text" class="form-control" />
-                    </div>
-                    <div class="form-group">
-                        <label>Amount:</label>
-                        <input type="number" class="form-control" ng-model="btCtrl.incomeInput.amount" />
-                    </div>
-                    <button type="button" class="btn btn-success btn-block" ng-click="btCtrl.addIncomeClick()">+ Add Income</button>
+                    <p class="text-center lead"><strong>City Name</strong></p>
+                    <p class="text-center small">Lat/Long: x,x</p>
                     <hr>
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Description</th>
-                                <th class="text-right">Amount</th>
+                                <td><strong>Temperature (F)</strong></td>
+                                <td><strong>Pressure</strong></td>
+                                <td><strong>Humidity</strong></td>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="income in btCtrl.addIncome">
-                                <td>{{income.name}}</td>
-                                <td class="text-right">{{income.amount | currency}}</td>
-                                <td ng-init="btCtrl.incomeSum = btCtrl.incomeSum + income.amount"></td>
+                            <tr>
+                                <td>#</td>
+                                <td>#</td>
+                                <td>#</td>
+                            </tr>
+                        </tbody>
+                        <thead>
+                            <tr>
+                                <td><strong>Lowest Temp (F)</strong></td>
+                                <td><strong>Highest Temp (F)</strong></td>
+                                <td><strong>Wind Speed</strong></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#</td>
+                                <td>#</td>
+                                <td>#</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-        <div class="col-md-3 top-buffer">
-            <div class="panel panel-danger top-buffer">
-                <div class="panel-heading">Expense Entries</div>
+        <div class="col-md-5 top-buffer margin: auto">
+            <div class="panel panel-info">
+                <div class="panel-heading">Search History</div>
                 <div class="panel-body">
-                    <div class="form-group">
-                        <label>Description:</label>
-                        <input ng-model="btCtrl.expenseInput.name" type="text" class="form-control" />
-                    </div>
-                    <div class="form-group">
-                        <label>Amount:</label>
-                        <input type="number" class="form-control" ng-model="btCtrl.expenseInput.amount" />
-                    </div>
-                    <button type="button" class="btn btn-danger btn-block" ng-click="btCtrl.addExpenseClick()">+ Add Income</button>
-                    <hr>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Description</th>
-                                <th class="text-right">Amount</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="expense in btCtrl.addExpense">
-                                <td>{{expense.name}}</td>
-                                <td class="text-right">{{expense.amount | currency}}</td>
-                                <td ng-init="btCtrl.expenseSum = btCtrl.expenseSum + expense.amount"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 top-buffer">
-            <div class="panel panel-info top-buffer">
-                <div class="panel-heading">Summary</div>
-                <div class="panel-body">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Total Income</th>
-                                <th>Total Expense</th>
-                                <th>Left After Spending</th>
-                            </tr>
-                        </thead>
+                    <table class="table table-striped">
                         <tbody>
                             <tr>
-                                <td>{{btCtrl.incomeSum | currency}}</td>
-                                <td>{{btCtrl.expenseSum | currency}}</td>
-                                <td>{{btCtrl.incomeSum - btCtrl.expenseSum | currency}}</td>
+                                <td>City Name</td>
+                                <td class="text-right">Date</td>
+                                <td class="text-right">Time</td>
+                            </tr>
+                            <tr>
+                                <td>City Name</td>
+                                <td class="text-right">Date</td>
+                                <td class="text-right">Time</td>
                             </tr>
                         </tbody>
-                    </table>
                 </div>
             </div>
         </div>
@@ -118,7 +116,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
     <!-- inject:js -->
     <script src="app/module.app.js"></script>
-    <script src="app/controller/BudgetTracker.controller.js"></script>
+    <script src="app/controller/WeatherApp.controller.js"></script>
     <!-- endinject -->
 </body>
 
