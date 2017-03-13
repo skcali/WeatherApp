@@ -1,0 +1,125 @@
+<!doctype html>
+
+<html lang="en" ng-app="BudgetTracker">
+
+<head>
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <!-- endbower -->
+    <meta charset="utf-8">
+
+    <title>Budget Tracker App</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- inject:css -->
+    <!-- endinject -->
+</head>
+
+<body ng-controller="BudgetTrackerCtrl as btCtrl">
+    <!-- bower:js -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <!-- endbower -->
+    <div class="container-fluid">
+        <div class="col-md-3 top-buffer">
+            <div class="panel panel-success top-buffer">
+                <div class="panel-heading">Income Entries</div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label>Description:</label>
+                        <input ng-model="btCtrl.incomeInput.name" type="text" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>Amount:</label>
+                        <input type="number" class="form-control" ng-model="btCtrl.incomeInput.amount" />
+                    </div>
+                    <button type="button" class="btn btn-success btn-block" ng-click="btCtrl.addIncomeClick()">+ Add Income</button>
+                    <hr>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Description</th>
+                                <th class="text-right">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="income in btCtrl.addIncome">
+                                <td>{{income.name}}</td>
+                                <td class="text-right">{{income.amount | currency}}</td>
+                                <td ng-init="btCtrl.incomeSum = btCtrl.incomeSum + income.amount"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 top-buffer">
+            <div class="panel panel-danger top-buffer">
+                <div class="panel-heading">Expense Entries</div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label>Description:</label>
+                        <input ng-model="btCtrl.expenseInput.name" type="text" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>Amount:</label>
+                        <input type="number" class="form-control" ng-model="btCtrl.expenseInput.amount" />
+                    </div>
+                    <button type="button" class="btn btn-danger btn-block" ng-click="btCtrl.addExpenseClick()">+ Add Income</button>
+                    <hr>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Description</th>
+                                <th class="text-right">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="expense in btCtrl.addExpense">
+                                <td>{{expense.name}}</td>
+                                <td class="text-right">{{expense.amount | currency}}</td>
+                                <td ng-init="btCtrl.expenseSum = btCtrl.expenseSum + expense.amount"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 top-buffer">
+            <div class="panel panel-info top-buffer">
+                <div class="panel-heading">Summary</div>
+                <div class="panel-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Total Income</th>
+                                <th>Total Expense</th>
+                                <th>Left After Spending</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{btCtrl.incomeSum | currency}}</td>
+                                <td>{{btCtrl.expenseSum | currency}}</td>
+                                <td>{{btCtrl.incomeSum - btCtrl.expenseSum | currency}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
+    <!-- inject:js -->
+    <script src="app/module.app.js"></script>
+    <script src="app/controller/BudgetTracker.controller.js"></script>
+    <!-- endinject -->
+</body>
+
+</html>
