@@ -53,63 +53,9 @@
                     toastr.error('API Call Error');
                 });
         };
-        vm.addNY = function addNY() {
+        vm.getWeather = function getWeather(searchTerm) {
             $http
-                .get('http://api.openweathermap.org/data/2.5/weather?q=newyork&appid=13b6edb6efe681b822061d2ab2197a98')
-                .then(function(response) {
-                    vm.cityInfo = response.data;
-                    vm.convertTemp = convertKtoF(vm.cityInfo.main.temp);
-                    vm.convertMinTemp = convertKtoF(vm.cityInfo.main.temp_min);
-                    vm.convertMaxTemp = convertKtoF(vm.cityInfo.main.temp_max);
-                    vm.time = new Date();
-                    vm.cities.unshift({
-                      cityTitle: vm.cityInfo.name,
-                      dates: vm.time
-                    });
-                })
-                .catch(function(error) {
-                    toastr.error('API Call Error');
-                });
-        };
-        vm.addLondon = function addLondon() {
-            $http
-                .get('http://api.openweathermap.org/data/2.5/weather?q=london&appid=13b6edb6efe681b822061d2ab2197a98')
-                .then(function(response) {
-                    vm.cityInfo = response.data;
-                    vm.convertTemp = convertKtoF(vm.cityInfo.main.temp);
-                    vm.convertMinTemp = convertKtoF(vm.cityInfo.main.temp_min);
-                    vm.convertMaxTemp = convertKtoF(vm.cityInfo.main.temp_max);
-                    vm.time = new Date();
-                    vm.cities.unshift({
-                      cityTitle: vm.cityInfo.name,
-                      dates: vm.time
-                    });
-                })
-                .catch(function(error) {
-                    toastr.error('API Call Error');
-                });
-        };
-        vm.addTokyo = function addTokyo() {
-            $http
-                .get('http://api.openweathermap.org/data/2.5/weather?q=tokyo&appid=13b6edb6efe681b822061d2ab2197a98')
-                .then(function(response) {
-                    vm.cityInfo = response.data;
-                    vm.convertTemp = convertKtoF(vm.cityInfo.main.temp);
-                    vm.convertMinTemp = convertKtoF(vm.cityInfo.main.temp_min);
-                    vm.convertMaxTemp = convertKtoF(vm.cityInfo.main.temp_max);
-                    vm.time = new Date();
-                    vm.cities.unshift({
-                      cityTitle: vm.cityInfo.name,
-                      dates: vm.time
-                    });
-                })
-                .catch(function(error) {
-                    toastr.error('API Call Error');
-                });
-        };
-        vm.addSD = function addSD() {
-            $http
-                .get('http://api.openweathermap.org/data/2.5/weather?q=san%20diego&appid=13b6edb6efe681b822061d2ab2197a98')
+                .get('http://api.openweathermap.org/data/2.5/weather?q=' + searchTerm + '&appid=13b6edb6efe681b822061d2ab2197a98')
                 .then(function(response) {
                     vm.cityInfo = response.data;
                     vm.convertTemp = convertKtoF(vm.cityInfo.main.temp);

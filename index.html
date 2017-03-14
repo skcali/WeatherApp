@@ -30,11 +30,11 @@
     </div>
     <div class="container-fluid">
         <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" ng-click="weatherCtrl.addSD()" class="btn btn-primary">San Diego</button>
-            <button type="button" ng-click="weatherCtrl.addNY()" class="btn btn-primary">New York</button>
-            <button type="button" ng-click="weatherCtrl.addWDC()" class="btn btn-primary">Washington D.C.</button>
-            <button type="button" ng-click="weatherCtrl.addLondon()" class="btn btn-primary">London</button>
-            <button type="button" ng-click="weatherCtrl.addTokyo()" class="btn btn-primary">Tokyo</button>
+            <button type="button" ng-click="weatherCtrl.getWeather('San Diego')" class="btn btn-primary">San Diego</button>
+            <button type="button" ng-click="weatherCtrl.getWeather('New York')" class="btn btn-primary">New York</button>
+            <button type="button" ng-click="weatherCtrl.getWeather('Washington DC')" class="btn btn-primary">Washington D.C.</button>
+            <button type="button" ng-click="weatherCtrl.getWeather('London')" class="btn btn-primary">London</button>
+            <button type="button" ng-click="weatherCtrl.getWeather('Tokyo')" class="btn btn-primary">Tokyo</button>
         </div>
         <div class="input-group top-buffer">
             <input type="text" class="form-control" placeholder="Enter city name..." ng-model="weatherCtrl.cityName">
