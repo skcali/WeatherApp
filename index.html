@@ -11,6 +11,7 @@
     <title>Current Weather App</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://unpkg.com/angular-toastr/dist/angular-toastr.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <!-- inject:css -->
@@ -86,21 +87,20 @@
                 <div class="panel-heading">Search History</div>
                 <div class="panel-body">
                     <table class="table table-striped">
-                        <tbody>
-                            <tr ng-repeat="city in weatherCtrl.cities">
-                                <td>{{city}}</td>
-                                <td class="text-right" ng-model="weatherCtrl.date">{{weatherCtrl.date | date:'medium'}}</td>
-
-                            </tr>
-                        </tbody>
+                        <tr ng-repeat="city in weatherCtrl.cities">
+                            <td>{{city.cityTitle}}</td>
+                            <td class="text-right">{{city.dates | date:'yyyy-MM-dd HH:mm:ss Z'}}</td>
+                        </tr>
                     </table>
                 </div>
             </div>
         </div>
+        <div id="alert" class="hide"></div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/angular-toastr/dist/angular-toastr.tpls.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
     <!-- inject:js -->
     <script src="app/module.app.js"></script>
