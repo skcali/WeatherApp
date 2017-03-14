@@ -1,6 +1,6 @@
 <!doctype html>
 
-<html lang="en" ng-app="BudgetTracker">
+<html lang="en" ng-app="WeatherApp">
 
 <head>
     <!-- bower:css -->
@@ -8,7 +8,7 @@
     <!-- endbower -->
     <meta charset="utf-8">
 
-    <title>Budget Tracker App</title>
+    <title>Current Weather App</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -17,7 +17,7 @@
     <!-- endinject -->
 </head>
 
-<body ng-controller="WeatherApp as weatherCtrl">
+<body ng-controller="WeatherAppCtrl as weatherCtrl">
     <!-- bower:js -->
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -28,33 +28,25 @@
         <h3 style="font-style: italic">Always know if you need an unbrella!</h3>
     </div>
     <div class="container-fluid">
-        <div class="btn-group" data-toggle="buttons">
-            <label class="btn btn-primary active">
-              <input type="radio" name="options" id="option1" autocomplete="off" checked>San Diego
-            </label>
-            <label class="btn btn-primary">
-              <input type="radio" name="options" id="option2" autocomplete="off">New York
-            </label>
-            <label class="btn btn-primary">
-              <input type="radio" name="options" id="option3" autocomplete="off">Washington D.C.
-            </label>
-            <label class="btn btn-primary">
-              <input type="radio" name="options" id="option3" autocomplete="off">London
-            </label>
-            <label class="btn btn-primary">
-              <input type="radio" name="options" id="option3" autocomplete="off">Tokyo
-            </label>
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" ng-click="weatherCtrl.addSD()" class="btn btn-primary">San Diego</button>
+            <button type="button" ng-click="weatherCtrl.addNY()" class="btn btn-primary">New York</button>
+            <button type="button" ng-click="weatherCtrl.addWDC()" class="btn btn-primary">Washington D.C.</button>
+            <button type="button" ng-click="weatherCtrl.addLondon()" class="btn btn-primary">London</button>
+            <button type="button" ng-click="weatherCtrl.addTokyo()" class="btn btn-primary">Tokyo</button>
         </div>
         <div class="input-group top-buffer">
-            <input type="text" class="form-control" placeholder="Recipient's username" aria-describedby="basic-addon2">
-            <span class="input-group-addon" id="basic-addon2">Go!</span>
+            <input type="text" class="form-control" placeholder="Enter city name..." ng-model="weatherCtrl.cityName">
+            <span class="input-group-btn">
+               <button class="btn btn-primary" type="button" ng-click="weatherCtrl.addCity()">Go!</button>
+            </span>
         </div>
         <div class="col-md-5 top-buffer margin: auto">
             <div class="panel panel-info">
                 <div class="panel-heading">City Information</div>
                 <div class="panel-body">
-                    <p class="text-center lead"><strong>City Name</strong></p>
-                    <p class="text-center small">Lat/Long: x,x</p>
+                    <p class="text-center lead"><strong>{{weatherCtrl.cityInfo.name}}</strong></p>
+                    <p class="text-center small">Lat/Long: {{weatherCtrl.cityInfo.coord.lat}},{{weatherCtrl.cityInfo.coord.lon}}</p>
                     <hr>
                     <table class="table">
                         <thead>
@@ -66,9 +58,9 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>#</td>
-                                <td>#</td>
-                                <td>#</td>
+                                <td class="text-success"><strong>{{weatherCtrl.convertTemp}} F</strong></td>
+                                <td class="text-success"><strong>{{weatherCtrl.cityInfo.main.pressure}}</strong></td>
+                                <td class="text-success"><strong>{{weatherCtrl.cityInfo.main.humidity}}%</strong></td>
                             </tr>
                         </tbody>
                         <thead>
@@ -80,9 +72,9 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>#</td>
-                                <td>#</td>
-                                <td>#</td>
+                                <td class="text-success"><strong>{{weatherCtrl.convertMinTemp}}F</strong></td>
+                                <td class="text-success"><strong>{{weatherCtrl.convertMaxTemp}}F</strong></td>
+                                <td class="text-success"><strong>{{weatherCtrl.cityInfo.wind.speed}} MPH</strong></td>
                             </tr>
                         </tbody>
                     </table>
@@ -95,17 +87,13 @@
                 <div class="panel-body">
                     <table class="table table-striped">
                         <tbody>
-                            <tr>
-                                <td>City Name</td>
-                                <td class="text-right">Date</td>
-                                <td class="text-right">Time</td>
-                            </tr>
-                            <tr>
-                                <td>City Name</td>
-                                <td class="text-right">Date</td>
-                                <td class="text-right">Time</td>
+                            <tr ng-repeat="city in weatherCtrl.cities">
+                                <td>{{city}}</td>
+                                <td class="text-right" ng-model="weatherCtrl.date">{{weatherCtrl.date | date:'medium'}}</td>
+
                             </tr>
                         </tbody>
+                    </table>
                 </div>
             </div>
         </div>
